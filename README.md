@@ -1,2 +1,3 @@
 # hello-worl
-Programm zum verstehen und aneignen von github.
+Programm zum verstehen von github.
+
