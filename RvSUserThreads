@@ -1,0 +1,94 @@
+
+	package edu.udo.cs.rvs.ssdp;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+
+
+public class UserThread implements Runnable
+	{
+		private ListenThread listT;
+		private WorkerThread workT;
+		private InputStreamReader streamReader;
+		private BufferedReader reader;
+		
+		public UserThread() {
+		streamReader = new InputStreamReader("inputStream", StandardCharsets.UTF_8);
+		reader = new BufferedReader(streamReader);
+		
+
+		}
+		public void knows(ListenThread lt, WorkerThread wt)
+		{
+
+			listT =lt;
+			workT = wt;
+			
+		}
+		
+		public void run() 
+		{
+			System.out.println("UserTread wird initialisiert");	
+		}
+		
+		public String read()
+		{
+					InputStreamReader streamReader = new InputStreamReader("inputStream", StandardCharsets.UTF_8);
+					BufferedReader reader = new BufferedReader(streamReader);
+					String line = reader.readLine(); // Liest eine Zeile ohne Zeilenumbruch
+					
+					//[...]
+					if( line.equals("exit")|| line.equals("EXIT")) 
+					{
+						//Stopp-Methode
+						listT.stop();
+						workT.stop();
+						this.stop();
+					}else
+					{
+						if(line.equals("clear")|| line.equals("CLEAR"))
+						{
+							
+							clear();
+						}else
+						{
+							if(line.equals("list")||line.equals("LIST"))
+							{
+								//dann Methode list
+							}else
+							{
+								if(line.equals("scan")||line.equals("SCAN"))
+									{
+									//dann scan methode
+									}
+							}
+						}
+					}
+					
+					reader.close(); // Schließt automatisch auch den streamReader
+
+		}
+		
+		public void stop()
+		{
+			listT.stop();
+			workT.stop();
+			
+		}
+		public void list()
+		{
+			
+		}
+		public void clear()
+		{
+			ListenThread temp1 = new ListenThread;
+			WorkerThread temp2 = new WorkerThread;
+			knows(temp1,  temp2);	
+			
+		}
+		public void scan()
+		{
+			
+		}
+	}
